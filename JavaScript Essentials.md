@@ -13,7 +13,7 @@ JavaScript Essentials
 
 JavaScript is a **dynamically typed** language. That means you don't have to specify the data type of a variable when you declare it, and data types are converted automatically as needed during script execution.
 
-```
+```JavaScript
 var answer = 42;
 answer = "Thanks";
 ```
@@ -22,11 +22,12 @@ In JavaScript, `undefined` means a variable has been declared but has *not yet b
 
 `undefined` and `null` are two distinct types: `undefined` is a type itself (undefined) while `null` is an object.
 
-```
+```JavaScript
 var variable          // undefined variable
 typeof variable       // undefined
 ```
-```
+
+```JavaScript
 var variable = null   // null variable
 typeof variable       // object
 ```
@@ -35,12 +36,14 @@ typeof variable       // object
 ### Arrays
 
 The following example creates the coffees array with three elements and a length of three:
-```
+
+```JavaScript
 var coffees = ["French Roast", "Colombian", "Kona"];
 ```
 
 The following example creates the fish array, which has two elements with values and one empty element (`fish[0]` is `"Lion"`, `fish[1]` is `undefined`, and `fish[2]` is `"Angel"`):
-```
+
+```JavaScript
 var fish = ["Lion", , "Angel"];
 ```
 
@@ -54,7 +57,7 @@ If the two operands are of *the same type and have the same value*, then `===` p
 
 If the operands are of the same type, but if they are of different types, `==` and `!=` attempt to *coerce the values*. 
 
-```
+```JavaScript
 '' == '0'           // false
 0 == ''             // true
 0 == '0'            // true
@@ -74,7 +77,8 @@ As you see, the way JavaScript coerce the values is quite unpredictable. So a go
 #### _in_ operator
 
 The `in` operator returns true if the specified property is in the specified object. The syntax is:
-```
+
+```JavaScript
 propNameOrNumber in objectName
 ```
 
@@ -82,7 +86,8 @@ propNameOrNumber in objectName
 
 
 The `instanceof` operator returns true if the specified object is of the specified object type. The syntax is:
-```
+
+```JavaScript
 objectName instanceof objectType
 ```
 
@@ -90,7 +95,7 @@ objectName instanceof objectType
 
 The `void` operator specifies an expression *to be evaluated without returning a value*. expression is a JavaScript expression to evaluate. 
 
-```
+```JavaScript
 <A HREF="javascript:void(document.form.submit())">Submit</A>
 ```
 
@@ -99,12 +104,14 @@ The `void` operator specifies an expression *to be evaluated without returning a
 You construct a regular expression in one of two ways:
 
 Using a regular expression literal, as follows:
-```
+
+```JavaScript
 var re = /ab+c/;
 ```
 
 Calling the constructor function of the RegExp object, as follows:
-```
+
+```JavaScript
 var re = new RegExp("ab+c");
 ```
 
@@ -114,7 +121,7 @@ Regulation expressions are used with the `exec` and `test` methods of `RegExp`, 
 
 #### _for...in_ loop
 
-```
+```JavaScript
 for (variable in object) {
    statements
 }
@@ -124,7 +131,7 @@ for (variable in object) {
 
 Just about any object can be thrown in JavaScript. 
 
-```
+```JavaScript
 throw "Error";    //String type
 throw 42;         //Number type
 throw true;       //Boolean type
@@ -145,7 +152,7 @@ There are several ways to define a function:
 
 Traditional way of declare a function in the current scope:
 
-```
+```JavaScript
 function foo(){}
 ```
 
@@ -153,7 +160,7 @@ function foo(){}
 
 Functions are also objects, so they can be assigned to variables just like other objects. The following code define an *anonymous function* and assign it to a variable:
 
-```
+```JavaScript
 var fn = function(){}
 ```
 
@@ -162,9 +169,11 @@ var fn = function(){}
 **Named function expression**
 
 The function assigned to a variable can be anonymous or named.
-```
+
+```JavaScript
 var fn = function foo(){}
 ```
+
 The function name is only accessible within the function. If you want to use recursion, this is probably the way to go. 
 
 Using named function expressions helps in debugging, since the function name shows up on the call stack.
@@ -172,12 +181,15 @@ Using named function expressions helps in debugging, since the function name sho
 **Function constructor**
 
 Use `Function` as a constructor to define a function:
-```
+
+```JavaScript
 var F = new Function('arg1', 'arg2', 'console.log(arg1 + ", " + arg2)');
 F('foo', 'bar');  // Console output: 'foo, bar'
 ```
+
 Or directly call `Function` to get the same result:
-```
+
+```JavaScript
 var F = Function('arg1', 'arg2', 'console.log(arg1 + ", " + arg2)');
 F('foo', 'bar');  // Console output: 'foo, bar'
 ```
@@ -192,7 +204,8 @@ We will talk about constructors later.
 While there are different ways defining a function, there are also several different ways calling a function.
 
 Suppose we have a function defined:
-```
+
+```JavaScript
 function makeArray(arg1, arg2){  
     return [ this, arg1, arg2 ];  
 }  
@@ -200,14 +213,15 @@ function makeArray(arg1, arg2){
 
 **Direct calls**
 
-```
+```JavaScript
 makeArray('one', 'two');  //  [ window, 'one', 'two' ]  
 ```
+
 Since we call it in the global scope, `this` is `window` here.
 
 **Use apply() and call()**
 
-```
+```JavaScript
 var gasGuzzler = {year: 2008, model: 'Dodge Bailout'};  
 makeArray.apply(gasGuzzler, [ 'one', 'two' ]);  // [ gasGuzzler, 'one' , 'two' ]  
 makeArray.call(gasGuzzler,  'one', 'two');      // [ gasGuzzler, 'one' , 'two' ]  
@@ -224,7 +238,7 @@ The first parameter will override `this`.
 
 The function defined below gets invoked immediately.
 
-```
+```JavaScript
 var output = (function(){
   return 'bar';
 })(); // output is 'bar'
@@ -232,7 +246,7 @@ var output = (function(){
 
 **Used as object constructor**
 
-```
+```JavaScript
 var obj = new function(){};
 ```
 
@@ -242,14 +256,15 @@ What this line of code does is use an anonymous function as a constructor to con
 
 The arguments of a function are maintained in an array-like object. Within a function, you can address the arguments passed to it as follows:
 
-```
+```JavaScript
 arguments[i]
 ```
 
 where `i` is the ordinal number of the argument.
 
 An example of using `arguments` array:
-```
+
+```JavaScript
 function myConcat(separator) {
    var result = "", i;
    // iterate through arguments
@@ -259,8 +274,10 @@ function myConcat(separator) {
    return result;
 }
 ```
+
 You can pass any number of arguments to this function, and it concatenates each argument into a string array:
-```
+
+```JavaScript
 // returns "red, orange, blue, "
 myConcat(", ", "red", "orange", "blue");
 
@@ -281,15 +298,16 @@ An object is a collection of properties; and a property is just a key-value pair
 
 Add properties to an object with a simple *dot-notation*:
 
-```
+```JavaScript
 var myCar = new Object();
 myCar.make = "Ford";
 myCar.model = "Mustang";
 myCar.year = 1969;
 ```
+
 Objects are sometimes called *associative arrays*. Properties of JavaScript objects can also be accessed or set using a *bracket notation*.
 
-```
+```JavaScript
 myCar["make"] = "Ford";
 myCar["model"] = "Mustang";
 myCar["year"] = 1969;
@@ -310,7 +328,7 @@ There several ways to create custom objects in JavaScript:
 
 **Using object initializers**
 
-```
+```JavaScript
 var obj = { property_1:   value_1,   // property_# may be an identifier...
             2:            value_2,   // or a number...
             // ...,
@@ -319,7 +337,7 @@ var obj = { property_1:   value_1,   // property_# may be an identifier...
 
 **Using a constructor function**
 
-```
+```JavaScript
 function Car(make, model, year) {
   this.make = make;
   this.model = model;
@@ -340,7 +358,7 @@ The `new` keyword is not followed by a class type, but a function, and returns a
 
 Objects can also be created using the Object.create method. This method can be very useful, because it allows you to choose the prototype object for the object you want to create, without having to define a constructor function. 
 
-```
+```JavaScript
 // Animal properties and method encapsulation
 var Animal = {
   type: "Invertebrates", // Default value of properties
@@ -373,11 +391,12 @@ Any object can specify its own properties, either when you create it or at run t
 
 Since everything in JavaScript is an object, every object's *[[prototype]]* eventually points to JavaScript's built-in `Object`, i.e. every object is a child of `Object`. And `Object` has `null` as its *[[prototype]]*. For example:
 
-```
+```JavaScript
 var obj = new Object();   // [[prototype]] chain: obj -> Object -> null
 var str = "Hello World!"; // Strings are objects: str -> String -> Object -> null
 var fn  = function (){};  // Functions are also objects: fn -> Function -> Object -> null
 ```
+
 JavaScript has some predefined objects, such as `Boolean`,`String`,`Number`,`Function`,`Array`,`Date`, etc. 
 
 When you look up a property via `obj.propName` or `obj['propName']` and the object does not have such a property, the runtime looks up the property in the object referenced by *[[Prototype]]* instead. If the prototype-object also doesn't have such a property, its *[[Prototype]]* is checked in turn, thus walking the original object's prototype-chain until a match is found or its end is reached.
@@ -393,9 +412,11 @@ As we have discussed above, every object has a `__proto__` object, and it is the
 While `prototype` is a special property of a `Function` object. It is the prototype of objects constructed by that function.
 
 When we create a new object from a constructor function:
-```
+
+```JavaScript
 var obj = new Foo();
 ```
+
 What JavaScript does when it sees the `new` keyword is:
 
 1. It creates a new object. The type of this object, is simply `Object`.
@@ -408,23 +429,29 @@ This is how an object is created from a function and how the *prototype* works.
 Lets see an example of using *prototype*:
 
 Define a constructor function `Employee`. From the procedure above, we know `this` is the newly created object when we execute the constructor function. That's why we can use `this` to define properties in the new object.
-```
+
+```JavaScript
 function Employee () {
   this.name = "";
   this.dept = "";
 }
 ```
+
 Define another constructor function `Manager` and set its `prototype` property to an object created by `Employee`.
-```
+
+```JavaScript
 function Manager () {
   this.reports = [];
 }
 Manager.prototype = new Employee;
 ```
+
 When we create a new object using `Manager` function:
-```
+
+```JavaScript
 var mgr = new Manager();
 ```
+
 JavaScript sets the internal *[[prototype]]* of `mgr` to be the `prototype` of `Manager`, i.e. `mgr.__proto__ = Manager.prototype`. 
 
 `Manager.prototype` is an object with properties `name` and `dept`. In this way, `mgr` *inherits* the properties `name` and `dept` from its prototype object. 
@@ -435,7 +462,7 @@ JavaScript sets the internal *[[prototype]]* of `mgr` to be the `prototype` of `
 
 JavaScript has some *predefined objects*, such as `Boolean`,`String`,`Number`,`Function`,`Array`,`Date`, etc. But you never get access to these objects directly. The `Boolean`,`String` or `Number` you use in your code, are in fact, *predefined functions*.
 
-```
+```JavaScript
 typeof Object   // function
 typeof String   // function
 typeof Function // function
@@ -443,20 +470,21 @@ typeof Function // function
 
 You can use these predefined functions to create the corresponding objects.
 
-```
+```JavaScript
 var obj = new Object();
 typeof obj      // Object
 ```
 
 These predefined functions has the corresponding objects as their *prototype*. For example, function `String()` has a `String` object as its `prototype`; function `Boolean()` has a `Boolean` object as its `prototype`.
 
-```
+```JavaScript
 String.prototype  // [object String]
 Boolean.prototype // [object Boolean]
 ```
+
 Inversely, an object has a property called `constructor` indicating from which function it is created. `constructor` is a property defined in `Object`, and thus inherited by all objects. For example, a `String` object has a `constructor` function `String()`.
 
-```
+```JavaScript
 str = new String("JavaScript");
 str.constructor // function String()
 ```
@@ -472,7 +500,7 @@ A closure lets you associate some data (the environment) with a function that op
 
 An example of a closure:
 
-```
+```JavaScript
 function makeFunc() {
   var name = "JavaScript";
   function displayName() {

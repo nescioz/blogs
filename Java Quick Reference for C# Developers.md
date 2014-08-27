@@ -6,7 +6,7 @@ Java Quick Reference for C# Developers
 
 Interfaces (Prefixed with `I` vs. not):
 
-```
+```Java
 C#: 
 interface IAction 
 
@@ -16,7 +16,7 @@ interface Action
 
 Methods (Pascal vs. camel case):
 
-```
+```Java
 C#:
 public void DoSomething();
 
@@ -26,7 +26,7 @@ public void doSomething();
 
 Braces (BSD style vs. K&R style):
 
-```
+```Java
 C#:
 public bool Equals(int a, int b)
 {
@@ -70,6 +70,7 @@ public boolean equals(int a, int b) {
 |-       |ulong   |UInt64  |
 
 Get type of an object:
+
 |C#            |Java        |
 |--------------|------------|
 |`typeof(Foo)` |`Foo.class` |
@@ -82,7 +83,7 @@ Check if an object is compatible with a given type:
 
 #### Namespaces and Packages
 
-```
+```Java
 C#
 namespace Microsoft.Protocols;
 
@@ -92,7 +93,7 @@ package com.microsoft.protocols;
 
 #### Constants
 
-```
+```Java
 C#:
 const double pi = 3.1415926;
 
@@ -100,7 +101,7 @@ Java:
 final double PI = 3.1415926;
 ```
 
-```
+```Java
 C#:
 static readonly string name = "Tom";
 
@@ -110,7 +111,7 @@ final string name = "Tom";
 
 #### For-each Loops
 
-```
+```Java
 C#:
 foreach(T item in items) { ... }
 
@@ -135,7 +136,7 @@ Java does not have `internal` keyword. Non-public classes are visible within pac
 C# has reference and value types; Java has reference and primitive type.
 In C# you can use `struct` to create custom value types. Java does not have `struct`.
 
-```
+```Java
 C#:
 public struct Point {
     public int X;
@@ -147,7 +148,7 @@ public struct Point {
 
 Java Enums have much richer features than C#. You can define methods in Enums. And Enums can inherit from other classes or interfaces.
 
-```
+```Java
 C#:
 enum DeviceTypes {
     Android,
@@ -175,7 +176,7 @@ enum DeviceTypes implements Runnable {
 
 C# and Java both have inner classes, but they behave differently. Java implicitly passes a reference to an instance of the outer class to the inner class, allowing the inner class to access fields of the outer class. C# inner classes do not have the similar functionality.
 
-```
+```Java
 C#:
 class OuterClass {
     string field;
@@ -207,7 +208,7 @@ class OuterClass {
 
 Java does not have properties. 
 
-```
+```Java
 C#
 class Person {
     private string name;
@@ -238,7 +239,7 @@ class Person {
 All methods are overridable, except those marked with `final`.
 Java does not have `override` keyword. 
 
-```
+```Java
 C#:
 class Parent {
     // methods with virtual keyword can be override
@@ -272,7 +273,7 @@ class Child extends Parent {
 
 C# uses reified generics. Generics are a runtime feature. While Java uses type erasure. Generics are (mostly) a compiler feature.
 
-```
+```Java
 C#:
 new List<int>().GetType(); // List`1[Int32]
 
@@ -282,7 +283,7 @@ new ArrayList<Integer>().getClass(); // ArrayList
 
 Generic methods:
 
-```
+```Java
 C#:
 public class ListFactory {
     public static IList<T> CreateList<T>() {
@@ -304,7 +305,7 @@ List<String> list = ListFactory.createList();
 
 Constraints:
 
-```
+```Java
 C#:
 T Max<T>(T a, T b) where T: IComparable<T> {
     if (a.CompareTo(b) > 0) return a;
@@ -319,6 +320,7 @@ Java:
 ```
 
 Constrain Keywords:
+
 |C#                         |Java                        |Meaning                             |
 |---------------------------|----------------------------|------------------------------------|
 |`where T: IComparable<T>`  | `T extends Comparable<T>`  |                                    |
@@ -333,7 +335,7 @@ Constrain Keywords:
 
 Java does not have delegates or events. Callbacks are implemented using interfaces and anonymous classes. 
 
-```
+```Java
 C#
 delegate void OnInvoked(string msg);
 
@@ -370,7 +372,7 @@ static void main(String[] args){
 
 Java **annotations** function similarly as attributes in C#.
 
-```
+```Java
 C#
 [AttributeUsage(AttributeTargets.Class)]
 public class MyAttribute : Attribute {
@@ -401,7 +403,7 @@ public class TheClassWithMyAttribute {
 
 Both C# and Java supports powerful and easy-to-use reflection operations.
 
-```
+```Java
 C#:
 var attribute = typeof(TheClass).GetCustomAttributes(typeof (MyAttribute), true);
 
@@ -412,7 +414,7 @@ Annotation annotation = TheClass.class.getAnnotation(MyAnnotation.class);
 #### Exceptions
 
 
-```
+```Java
 C#:
 // everything thrown is an instance of Exception
 catch (Exception e) {
@@ -444,7 +446,7 @@ Checked exceptions:
 * must be caught or explicitly declared thrown
 * examples: `IOException`,`FileNotFoundException`
 
-```
+```Java
 Java:
 // throws unchecked exception
 void methodThrowsUncheckedException() {
@@ -470,11 +472,12 @@ static void main(String[] args)
     }
 }
 ```
+
 #### _using_ blocks
 
 **Java 7** as "Automatic Resource Management" (ARM) using the `try` keyword.
 
-```
+```Java
 C#:
 using(StreamReader reader = new StreamReader(new FileStream(path))) {
   ...
@@ -490,7 +493,8 @@ try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
 #### Lambda Expressions
 
 Lambda expression is introduced in **Java 8**.
-```
+
+```Java
 C#:
 Task.Run(
     () => Console.WriteLine("Hello from thread");
@@ -506,7 +510,7 @@ new Thread(
 
 **Java 8** introduces `stream`, which is kind of an equivalent to LINQ.
 
-```
+```Java
 C#:
 List<int> list = new List<int>{1,2,3,4,5,6,7};
 int sum = list.Select(x => x*x).Aggregate((x,y) => x + y);
